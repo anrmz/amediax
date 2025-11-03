@@ -1,1099 +1,1686 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
-
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>anrmez</title>
-	<meta name="description"
-		content="Portfolio of Anouar Mezgualli, a Full Stack Developer specializing in web and mobile applications, with expertise in Laravel, Vue.js, React, and more.">
-	<meta name="author" content="Anouar Mezgualli">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/vendor.css">
-	<script src="js/modernizr.js"></script>
-	<script src="js/pace.min.js"></script>
-	<link rel="icon" type="image/png" href="favicon.ico">
-	<!-- Add Google Fonts for modern look -->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:800&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Fira+Mono&display=swap" rel="stylesheet">
-	<style>
-		/* Enhanced Styles */
-		.skill-bars li .progress {
-			background: linear-gradient(90deg, #000000, #686868);
-			height: 10px;
-			border-radius: 5px;
-		}
+  <meta charset="utf-8">
+  <title>AmediaX – Digital Growth Agency</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Fonts for a fresh modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Inline SVGs are used in place of the Font Awesome webfont.  -->
+  <style>
+    /*
+     * Global styles
+     *
+     * Our primary colours are defined at the top for easy theme management.
+     */
+    :root {
+      --primary-colour: #009ef9; /* brand blue */
+      --secondary-colour: #ffffff; /* white */
+      --dark-colour: #000000; /* black */
+      --light-grey: #f5f5f5;
+    }
 
-		.intro-content h5 {
-			color: rgb(226, 226, 226);
-		}
+    * {
+      box-sizing: border-box;
+    }
 
-		.skill-bars li strong {
-			color: #333;
-			font-weight: bold;
-		}
+    html, body {
+      margin: 0;
+      padding: 0;
+      /* Modern sans-serif font for body text */
+      font-family: 'Inter', sans-serif;
+      color: var(--dark-colour);
+      background: var(--secondary-colour);
+      scroll-behavior: smooth;
+    }
 
-		.skill-bars li .progress span {
-			color: #fff;
-			background: #000000;
-			padding: 2px 5px;
-			border-radius: 3px;
-			position: absolute;
-			right: 0;
-			top: -25px;
-		}
+    h1, h2, h3, h4, h5 {
+      /* Stylish font for headings */
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+    }
 
-		.tech-stack {
-			list-style: none;
-			padding: 0;
-			display: flex;
-			flex-wrap: wrap;
-			gap: 10px;
-			margin-top: 20px;
-		}
+    /*
+     * Navigation bar
+     *
+     * A dark fixed header with a logo and responsive menu. On mobile the hamburger
+     * toggles visibility of the nav links. The logo is displayed clearly without
+     * filters. Hover states use the primary colour.
+     */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--dark-colour);
+      padding: 1rem 5%;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    }
+    .navbar .logo img {
+      height: 50px;
+      width: auto;
+      display: block;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li {
+      position: relative;
+    }
+    .nav-links a {
+      color: var(--secondary-colour);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 0;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--primary-colour);
+    }
+    /* Active link underline */
+    .nav-links a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--primary-colour);
+      transition: width 0.3s ease;
+      margin-top: 3px;
+    }
 
-		.tech-stack li {
-			background: #f0f0f0;
-			padding: 8px 15px;
-			border-radius: 20px;
-			font-size: 14px;
-			color: #333;
-			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-			transition: transform 0.3s ease;
-		}
+    /* RTL adjustments: reverse navigation order and spacing when the document direction is RTL */
+    html[dir="rtl"] .nav-links {
+      flex-direction: row-reverse;
+    }
+    html[dir="rtl"] .nav-links li {
+      margin-right: 0;
+      margin-left: 20px;
+    }
+    .nav-links a:hover::after,
+    .nav-links a:focus::after {
+      width: 100%;
+    }
+    /* Hamburger icon for mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--secondary-colour);
+      transition: all 0.3s ease;
+    }
+    /* Change into 'X' when active */
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -5px);
+    }
 
-		.tech-stack li:hover {
-			transform: scale(1.05);
-		}
+    /* Language switcher */
+    .language-switcher {
+      position: relative;
+      margin-left: 1rem;
+    }
+    .language-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.5rem 1rem;
+      background: var(--dark-colour);
+      border: 1px solid var(--primary-colour);
+      color: var(--secondary-colour);
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .language-btn svg {
+      width: 1rem;
+      height: 1rem;
+      fill: currentColor;
+    }
+    .language-btn:hover {
+      background: var(--primary-colour);
+      color: var(--dark-colour);
+    }
+    .language-options {
+      position: absolute;
+      right: 0;
+      top: 110%;
+      background: var(--dark-colour);
+      border: 1px solid var(--primary-colour);
+      border-radius: 4px;
+      display: none;
+      min-width: 140px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .language-options.active {
+      display: block;
+    }
+    .language-option {
+      padding: 0.5rem 1rem;
+      color: var(--secondary-colour);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.2s ease;
+    }
+    .language-option:hover,
+    .language-option.active {
+      background: var(--primary-colour);
+    }
+    /* Hide check icons on inactive language options and space them nicely */
+    .language-option svg {
+      margin-left: 0.5rem;
+      visibility: hidden;
+      width: 1rem;
+      height: 1rem;
+      fill: var(--secondary-colour);
+    }
+    .language-option.active svg {
+      visibility: visible;
+    }
 
-		.folio-item .item-wrap:hover img {
-			transform: scale(1.05);
-			transition: transform 0.3s ease;
-		}
+    /* Intro section */
+    #intro {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--secondary-colour);
+      background: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    }
+    #intro .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+    .intro-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 1rem;
+    }
+    .intro-content h5 {
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      color: var(--primary-colour);
+      text-transform: uppercase;
+    }
+    .intro-content h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .intro-position span {
+      display: inline-block;
+      background: var(--dark-colour);
+      color: var(--secondary-colour);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .button {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border-radius: 30px;
+      background: var(--primary-colour);
+      color: var(--secondary-colour);
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .button:hover {
+      background: darken(var(--primary-colour), 10%);
+      transform: translateY(-2px);
+    }
 
-		.folio-item .overlay {
-			background: rgba(0, 123, 255, 0.8);
-			transition: background 0.3s ease;
-		}
+    /* Utility for darkening colours in CSS variables */
+    @function darken($colour, $percent) {
+      @return mix(black, $colour, $percent);
+    }
 
-		.timeline-block {
-			position: relative;
-			padding-left: 50px;
-		}
+    /* Section intro general styles */
+    .section-intro {
+      padding: 5rem 1rem;
+      text-align: center;
+    }
+    .section-intro h5 {
+      color: var(--primary-colour);
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .section-intro h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .section-intro .lead {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #555;
+    }
 
-		.timeline-ico {
-			position: absolute;
-			left: 0;
-			top: 0;
-			background: #ff0000;
-			color: #fff;
-			width: 40px;
-			height: 40px;
-			line-height: 40px;
-			text-align: center;
-			border-radius: 50%;
-		}
+    /* About section */
+    #about {
+      padding-top: 6rem;
+      background: var(--secondary-colour);
+      color: var(--dark-colour);
+    }
 
-		.timeline-content p {
-			font-size: 16px;
-			line-height: 1.6;
-		}
+/* Ensure the About section heading and description are centered */
+#about .section-intro {
+  text-align: center;
+}
+#about .button-section {
+  text-align: center;
+}
+    #about .about-content {
+      /* Stack mission/approach and core services vertically for a centered layout */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      text-align: center;
+    }
+    #about .about-content > div {
+      /* Limit the width of each content block to improve readability */
+      max-width: 900px;
+      width: 100%;
+    }
+#about .about-content .col-six {
+  /* Centre all content within each column */
+  text-align: center;
+}
+    #about img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      /* Center images inside their container */
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #about h3 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-colour);
+      font-size: 1.5rem;
+    text-align: center;
+    }
+    /* Center all paragraphs within the About section */
+    #about p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      text-align: center !important;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .tech-stack {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 1.5rem;
+      padding: 0;
+      justify-content: center;
+    }
+    .tech-stack li {
+      background: var(--light-grey);
+      color: var(--dark-colour);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
 
-		.intro-overlay {
-			background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
-		}
+    /* Button section */
+    .button-section {
+      text-align: center;
+      padding: 2rem 0;
+    }
 
-		.intro-position span {
-			background: #222;
-			color: #fff;
-			padding: 8px 22px;
-			border-radius: 25px;
-			font-size: 1.2rem;
-			font-weight: 600;
-			box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
-			letter-spacing: 1px;
-			display: inline-block;
-			margin-bottom: 30px;
-			animation: fadeIn 1.5s ease;
-		}
+    /* Portfolio section */
+    #portfolio {
+      padding-top: 6rem;
+      background: var(--light-grey);
+    }
+    #portfolio .portfolio-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem 0;
+    }
+    .folio-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    .folio-item img {
+      display: block;
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .folio-item:hover img {
+      transform: scale(1.05);
+    }
+    .folio-item .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .folio-item:hover .overlay {
+      opacity: 1;
+    }
+    .folio-item .folio-title {
+      font-size: 1.2rem;
+      color: var(--secondary-colour);
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .folio-item .folio-types {
+      font-size: 0.9rem;
+      color: var(--primary-colour);
+    }
 
-		/* --- Enhanced Hero Section Styles --- */
-		.intro-content {
-			text-align: center;
-			padding-top: 120px;
-			padding-bottom: 120px;
-		}
+    /* Services section */
+    #services {
+      padding-top: 6rem;
+      background: var(--secondary-colour);
+    }
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 2rem 0;
+    }
+    .service-card {
+      background: var(--light-grey);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    .service-card h3 {
+      color: var(--primary-colour);
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+    .service-card p {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
 
-		.intro-content h5 {
-			color: #ffffff;
-			font-size: 2rem;
-			letter-spacing: 2px;
-			margin-bottom: 18px;
-			font-family: 'Fira Mono', monospace;
-			animation: fadeInDown 1s ease;
-		}
+    /* Contact section */
+    #contact {
+      padding-top: 6rem;
+      background: var(--light-grey);
+    }
+    #contact .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: var(--secondary-colour);
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    #contact .form-field {
+      margin-bottom: 1.25rem;
+    }
+    #contact input,
+    #contact textarea,
+    .dropdown-selected {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      transition: border-color 0.3s ease;
+    }
+    #contact input:focus,
+    #contact textarea:focus,
+    .dropdown-selected.active {
+      border-color: var(--primary-colour);
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0, 158, 249, 0.2);
+    }
+    .dropdown-selected {
+      background: #fff;
+      cursor: pointer;
+      position: relative;
+    }
+    .dropdown-selected::after {
+      content: '\25BC';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #777;
+    }
+    .dropdown-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      z-index: 100;
+    }
+    .dropdown-options.active {
+      max-height: 300px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .dropdown-option {
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.2s ease;
+    }
+    .dropdown-option:hover {
+      background: var(--light-grey);
+    }
+    .submitform {
+      background: var(--primary-colour);
+      color: var(--secondary-colour);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .submitform:hover {
+      background: #007fd1;
+      transform: translateY(-2px);
+    }
+    /* Contact info grid */
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .contact-info .icon {
+      font-size: 2rem;
+      color: var(--primary-colour);
+      margin-bottom: 0.5rem;
+    }
 
-		.intro-content h1 {
-			color: #fff;
-			font-size: 3.5rem;
-			font-weight: 800;
-			margin-bottom: 18px;
-			letter-spacing: 1px;
-			line-height: 1.1;
-			font-family: 'Montserrat', sans-serif;
-			animation: fadeInUp 1.2s ease;
-		}
+    /* Ensure inline SVG icons inside the contact-info, footer and widgets inherit the intended size and colour */
+    .contact-info .icon svg {
+      width: 2rem;
+      height: 2rem;
+      fill: var(--primary-colour);
+      display: inline-block;
+    }
+    footer .footer-social a svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      fill: var(--secondary-colour);
+    }
+    .widget-toggle svg,
+    .widget-button svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      fill: currentColor;
+    }
+    #go-top svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      fill: currentColor;
+    }
+    /* Footer */
+    footer {
+      background: var(--dark-colour);
+      color: var(--secondary-colour);
+      padding: 2rem 0;
+    }
+    footer .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    footer .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--secondary-colour);
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    footer .footer-social a:hover {
+      background: var(--primary-colour);
+      transform: translateY(-3px);
+    }
+    footer .copyright {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+    footer #go-top {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+    }
+    footer #go-top a {
+      color: var(--primary-colour);
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+    footer #go-top a:hover {
+      color: #007fd1;
+    }
 
-		.intro-position span {
-			background: #222;
-			color: #fff;
-			padding: 8px 22px;
-			border-radius: 25px;
-			font-size: 1.2rem;
-			font-weight: 600;
-			box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
-			letter-spacing: 1px;
-			display: inline-block;
-			margin-bottom: 30px;
-			animation: fadeIn 1.5s ease;
-		}
+    /* Contact widget */
+    .contact-widget {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.75rem;
+      z-index: 999;
+    }
+    .widget-toggle {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: var(--primary-colour);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary-colour);
+      font-size: 1.4rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .widget-toggle:hover {
+      background: #007fd1;
+      transform: scale(1.1);
+    }
+    .widget-buttons {
+      display: none;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: absolute;
+      bottom: 65px; /* stack icons above the toggle */
+      right: 0;
+    }
+    .widget-buttons.active {
+      display: flex;
+    }
+    .widget-button {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary-colour);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary-colour);
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      position: relative;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .widget-button:hover {
+      background: #007fd1;
+      transform: scale(1.1);
+    }
+    .widget-tooltip {
+      position: absolute;
+      right: 55px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.85);
+      color: var(--secondary-colour);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .widget-button:hover .widget-tooltip {
+      opacity: 1;
+    }
 
-		@media (max-width: 768px) {
-			.intro-content h1 {
-				font-size: 2.2rem;
-			}
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: var(--secondary-colour);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 90%;
+      max-height: 90%;
+      overflow-y: auto;
+      color: var(--dark-colour);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    .modal-content img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .modal-content h4 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: var(--primary-colour);
+    }
+    .modal-content p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-top: 0.75rem;
+    }
+    .modal-content .categories {
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      color: #666;
+    }
 
-			.intro-content h5 {
-				font-size: 1.1rem;
-			}
+    /* Utility class to force center alignment on text elements */
+    .centered-text {
+      text-align: center !important;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .modal-content .modal-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .modal-content .modal-links a,
+    .modal-content .modal-links button {
+      background: var(--primary-colour);
+      color: var(--secondary-colour);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .modal-content .modal-links a:hover,
+    .modal-content .modal-links button:hover {
+      background: #007fd1;
+    }
 
-			.intro-position span {
-				font-size: 1rem;
-				padding: 6px 14px;
-			}
-		}
+    /* Responsive behaviour */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--dark-colour);
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        display: none;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .nav-links li {
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0.75rem 0;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .language-switcher {
+        margin-left: 0;
+        margin-top: 0.5rem;
+      }
+      .language-options {
+        right: auto;
+        left: 0;
+      }
+      #about .about-content > div {
+        flex: 1 1 100%;
+      }
+      #portfolio .portfolio-content {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+      .intro-content h1 {
+        font-size: 2.5rem;
+      }
+      .intro-content h5 {
+        font-size: 1.2rem;
+      }
+    }
 
-		@keyframes fadeInDown {
-			from {
-				opacity: 0;
-				transform: translateY(-30px);
-			}
-
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
-
-		@keyframes fadeInUp {
-			from {
-				opacity: 0;
-				transform: translateY(30px);
-			}
-
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
-
-		@keyframes fadeIn {
-			from {
-				opacity: 0;
-			}
-
-			to {
-				opacity: 1;
-			}
-		}
-
-		/* New Optimizations */
-		.education-details {
-			margin-top: 15px;
-		}
-
-		.education-details h4 {
-			margin-bottom: 10px;
-		}
-
-		.education-details ul {
-			padding-left: 20px;
-			margin-bottom: 20px;
-		}
-
-		.education-details li {
-			margin-bottom: 8px;
-		}
-
-		.education-details strong {
-			display: block;
-			margin-top: 15px;
-			color: #333;
-		}
-
-		.skills-container {
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			gap: 20px;
-			margin-top: 20px;
-		}
-
-		.skill-category {
-			margin-bottom: 20px;
-		}
-
-		.skill-category h4 {
-			margin-bottom: 10px;
-			font-size: 16px;
-			color: #333;
-			border-bottom: 1px solid #eee;
-			padding-bottom: 5px;
-		}
-
-		.skill-tags {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-			display: flex;
-			flex-wrap: wrap;
-			gap: 8px;
-		}
-
-		.skill-tags li {
-			background: #f0f0f0;
-			padding: 5px 12px;
-			border-radius: 20px;
-			font-size: 13px;
-			color: #333;
-		}
-
-		.service-card {
-			background: rgba(255, 255, 255, 0.08);
-			border-radius: 8px;
-			padding: 25px;
-			height: 100%;
-			transition: transform 0.3s ease;
-		}
-
-		.service-card:hover {
-			transform: translateY(-5px);
-		}
-
-		.service-card .icon {
-			font-size: 50px;
-			margin-bottom: 15px;
-			color: #ff0000;
-		}
-
-		.service-card h3 {
-			margin-bottom: 15px;
-		}
-
-		@media (max-width: 768px) {
-			.skills-container {
-				grid-template-columns: 1fr;
-			}
-		}
-
-		/* Professional Responsive Navbar Styles */
-		.navbar {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			background: rgba(255, 255, 255, 0.95);
-			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			padding: 0px;
-			z-index: 1000;
-			transition: background 0.3s ease;
-		}
-
-		.navbar.scrolled {
-			background: #ffffff;
-		}
-
-		.logo {
-			font-size: 2rem;
-			/* Increased font size for logo */
-			font-weight: 800;
-			color: #333;
-			font-family: 'Montserrat', sans-serif;
-			text-decoration: none;
-			height: 50px;
-		}
-
-		.nav-links {
-			display: flex;
-			list-style: none;
-			margin: 0;
-			padding: 0;
-		}
-
-		.nav-links li {
-			margin: 0 20px;
-		}
-
-		.nav-links a {
-			text-decoration: none;
-			color: #333;
-			font-weight: 600;
-			font-size: 17px;
-			/* Increased font size for nav links */
-			position: relative;
-			transition: color 0.3s ease;
-		}
-
-		.nav-links a:hover {
-			color: #ff0000;
-		}
-
-		.nav-links a::after {
-			content: '';
-			position: absolute;
-			width: 0;
-			height: 2px;
-			bottom: -5px;
-			left: 0;
-			background-color: #ff0000;
-			transition: width 0.3s ease;
-		}
-
-		.nav-links a:hover::after {
-			width: 100%;
-		}
-
-		.hamburger {
-			display: none;
-			flex-direction: column;
-			cursor: pointer;
-			gap: 5px;
-		}
-
-		.hamburger span {
-			width: 25px;
-			height: 3px;
-			background: #333;
-			transition: all 0.3s ease;
-		}
-
-		.hamburger.active span:nth-child(1) {
-			transform: rotate(45deg) translate(5px, 5px);
-		}
-
-		.hamburger.active span:nth-child(2) {
-			opacity: 0;
-		}
-
-		.hamburger.active span:nth-child(3) {
-			transform: rotate(-45deg) translate(7px, -6px);
-		}
-
-		@media (max-width: 768px) {
-			.nav-links {
-				display: none;
-				flex-direction: column;
-				position: absolute;
-				top: 70px;
-				/* Adjusted for larger navbar */
-				left: 0;
-				width: 100%;
-				background: #ffffff;
-				padding: 20px 0;
-				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-			}
-
-			.nav-links.active {
-				display: flex;
-			}
-
-			.nav-links li {
-				margin: 15px 0;
-				text-align: center;
-			}
-
-			.nav-links a {
-				font-size: 16px;
-				/* Slightly smaller for mobile but still larger */
-			}
-
-			.hamburger {
-				display: flex;
-				/* Add these positioning properties */
-				position: absolute;
-				top: 27px;
-				right: 20px;
-				z-index: 1000;
-			}
-		}
-
-		.timeline-ico {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 50px;
-			/* Adjust if your circle is a different size */
-			height: 50px;
-			/* Adjust if your circle is a different size */
-		}
-
-		.timeline-ico svg {
-			display: block;
-			margin: auto;
-		}
-	</style>
+    /* Extra small screens */
+    @media (max-width: 480px) {
+      /* Reduce hero heading sizes for better fit on very small screens */
+      .intro-content h1 {
+        font-size: 2rem;
+      }
+      .intro-content h5 {
+        font-size: 1rem;
+      }
+      /* Stack portfolio items vertically on the smallest screens */
+      #portfolio .portfolio-content {
+        grid-template-columns: 1fr;
+      }
+      /* Stack service cards */
+      .services-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+<body>
 
-<body id="top">
+  <!-- Navigation -->
+  <header>
+    <nav class="navbar">
+      <a href="#intro" class="logo smoothscroll">
+        <!-- Use existing logo path; users should place their own logo at images/logo-1.png -->
+        <img src="images/logo-1.png" alt="AmediaX logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#intro" class="smoothscroll" data-lang-key="home">Home</a></li>
+        <li><a href="#about" class="smoothscroll" data-lang-key="about">About</a></li>
+        <li><a href="#portfolio" class="smoothscroll" data-lang-key="portfolio">Portfolio</a></li>
+        <li><a href="#services" class="smoothscroll" data-lang-key="services">Services</a></li>
+        <li><a href="#contact" class="smoothscroll" data-lang-key="contact">Contact</a></li>
+        <li>
+          <div class="language-switcher">
+            <button class="language-btn" type="button">
+              <!-- Inline globe icon for language selector -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5zm6.853 3.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.7 13.7 0 0 1-.312 2.5m2.802-3.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7 7 0 0 0-3.072-2.472c.218.284.418.598.597.933M10.855 4a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4z"/>
+              </svg>
+              <span data-lang-key="language">EN</span>
+            </button>
+            <div class="language-options">
+              <div class="language-option active" data-lang="en">English
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+              </div>
+              <div class="language-option" data-lang="fr">Français
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+              </div>
+              <div class="language-option" data-lang="es">Español
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+              </div>
+              <div class="language-option" data-lang="ar">العربية
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
 
-	<!-- Professional Responsive Navbar -->
-	<header>
-		<nav class="navbar">
-			<a href="#top" class="logo smoothscroll">AM</a>
-			<ul class="nav-links">
-				<li><a href="#intro" class="smoothscroll">Home</a></li>
-				<li><a href="#about" class="smoothscroll">About</a></li>
-				<li><a href="#resume" class="smoothscroll">Resume</a></li>
-				<li><a href="#portfolio" class="smoothscroll">Portfolio</a></li>
-				<li><a href="#services" class="smoothscroll">Services</a></li>
-				<li><a href="#contact" class="smoothscroll">Contact</a></li>
-			</ul>
-			<div class="hamburger">
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-		</nav>
-	</header>
+  <!-- Hero / Intro section -->
+  <section id="intro">
+    <div class="overlay"></div>
+    <div class="intro-content">
+      <h5 data-lang-key="welcome">Welcome to AmediaX</h5>
+      <h1 data-lang-key="hero-title">We Build Digital Success.</h1>
+      <p class="intro-position"><span data-lang-key="tagline">Digital Growth Studio</span></p>
+      <a class="button smoothscroll" href="#about" data-lang-key="discover">Discover Our Services</a>
+    </div>
+  </section>
 
-	<!-- intro section -->
-	<section id="intro">
-		<div class="intro-overlay"></div>
-		<style>
-			@media (min-width: 769px) {
-				.intro-content h1 {
-					font-size: 76px !important;
-				}
-			}
-		</style>
-		<div class="intro-content">
-			<div class="row">
-				<div class="col-twelve">
-					<h5>Hello, World!</h5>
-					<h1>I'm Anouar Mezgualli.</h1>
-					<p class="intro-position">
-						<span>Full Stack Developer</span>
-					</p>
-					<a class="button stroke smoothscroll" href="#about" title="">More About Me</a>
-				</div>
-			</div>
-		</div> <!-- /intro-content -->
-		<ul class="intro-social">
-			<li><a href="https://x.com/anr_mz"><i class="fa fa-twitter"></i></a></li>
-			<li><a href="http://instagram.com/anrmez"><i class="fa fa-instagram"></i></a></li>
-			<li><a href="https://www.linkedin.com/in/anrmz/"><i class="fa fa-linkedin"></i></a></li>
-			<li><a href="https://github.com/anrmz"><i class="fa fa-github"></i></a></li>
-		</ul> <!-- /intro-social -->
-	</section> <!-- /intro -->
+  <!-- About section -->
+  <section id="about">
+    <div class="section-intro">
+      <h5 data-lang-key="about">About</h5>
+      <h1 data-lang-key="meet">Meet AmediaX</h1>
+      <p class="lead centered-text" data-lang-key="about-desc">AmediaX is a digital growth studio that helps brands, businesses, and stores grow online through smart, creative, and strategic digital solutions. We help brands look better, sell more, and grow smarter using modern digital tools.</p>
+    </div>
+    <div class="about-content">
+      <div>
+        <img src="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&fit=crop&w=600&q=80" alt="AmediaX Team">
+        <h3 data-lang-key="mission">Our Mission</h3>
+        <p data-lang-key="mission-desc" class="centered-text">To help brands look better, sell more, and grow smarter using modern digital tools. We're not just a social media page maker, not just a designer, not just a developer – we're the full digital solution for business growth.</p>
+        <h3 data-lang-key="approach">Our Approach</h3>
+        <p data-lang-key="approach-desc" class="centered-text">Based in Morocco, we work with brands locally and internationally to build comprehensive digital strategies that deliver real results. We combine creative thinking with technical expertise to create solutions that drive growth.</p>
+      </div>
+      <div>
+        <h3 data-lang-key="core-services">Core Services</h3>
+        <ul class="tech-stack">
+          <li data-lang-key="web-dev">Website Development</li>
+          <li data-lang-key="seo">SEO Optimization</li>
+          <li data-lang-key="social-media">Social Media Management</li>
+          <li data-lang-key="branding">Branding & Logo Design</li>
+          <li data-lang-key="email">Email Marketing</li>
+          <li data-lang-key="content">Content Creation</li>
+          <li data-lang-key="strategy">Digital Strategy</li>
+        </ul>
+      </div>
+    </div>
+    <div class="button-section">
+      <a href="#contact" class="button smoothscroll" data-lang-key="start-project">Start Your Project</a>
+    </div>
+  </section>
 
-	<!-- about section -->
-	<section id="about">
-		<div class="row section-intro">
-			<div class="col-twelve">
-				<h5>About</h5>
-				<h1>Let me introduce myself.</h1>
-				<div class="intro-info">
-					<img src="images/profile-pic.jpg" alt="Profile Picture">
-					<p class="lead">I'm a Full Stack Developer experienced in creating dynamic and responsive websites
-						and applications. My expertise spans both front-end and back-end development, ensuring
-						comprehensive solutions tailored to your needs.</p>
-				</div>
-			</div>
-		</div> <!-- /section-intro -->
+  <!-- Portfolio section -->
+  <section id="portfolio">
+    <div class="section-intro">
+      <h5 data-lang-key="portfolio">Portfolio</h5>
+      <h1 data-lang-key="success-stories">Our Client Success Stories</h1>
+      <p class="lead" data-lang-key="portfolio-desc">Explore our latest projects showcasing how we've helped businesses grow through comprehensive digital solutions.</p>
+    </div>
+    <div class="portfolio-content">
+      <!-- Portfolio items trigger modals on click -->
+      <div class="folio-item" data-modal="modal-restaurant">
+        <img src="images/portfolio/restaurant.jpg" alt="Restaurant Project">
+        <div class="overlay">
+          <div>
+            <div class="folio-title" data-lang-key="restaurant-title">Restaurant Website Development</div>
+            <div class="folio-types" data-lang-key="web-dev">Web Development</div>
+          </div>
+        </div>
+      </div>
+      <!-- E-Commerce Landing project -->
+      <div class="folio-item" data-modal="modal-ecommerce">
+        <!-- Use the user's provided ecommerce‑landing image -->
+        <img src="images/portfolio/ecommerce-landing.jpg" alt="E‑Commerce Landing Page">
+        <div class="overlay">
+          <div>
+            <!-- Reuse ecommerce title translation for simplicity -->
+            <div class="folio-title" data-lang-key="ecommerce-title">E‑Commerce Platform</div>
+            <div class="folio-types" data-lang-key="react-ecommerce">React.js E‑Commerce</div>
+          </div>
+        </div>
+      </div>
+      <!-- NBTA Hospitality project -->
+      <div class="folio-item" data-modal="modal-nbta">
+        <img src="images/portfolio/nbtaproject.jpg" alt="NBTA Hospitality Brand">
+        <div class="overlay">
+          <div>
+            <div class="folio-title" data-lang-key="nbta-title">NBTA Hospitality Brand</div>
+            <div class="folio-types" data-lang-key="branding-web">Branding & Web</div>
+          </div>
+        </div>
+      </div>
+      <!-- E-Commerce System project -->
+      <div class="folio-item" data-modal="modal-ecommerce-system">
+        <!-- Use the user's provided ecommerce image for the system -->
+        <img src="images/portfolio/ecommerce.jpg" alt="E‑Commerce Management System">
+        <div class="overlay">
+          <div>
+            <div class="folio-title" data-lang-key="ecommerce-system">E‑Commerce Management System</div>
+            <div class="folio-types" data-lang-key="full-stack">Full‑Stack Development</div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- Modals for portfolio items -->
+      <div id="modal-restaurant" class="modal">
+        <div class="modal-content">
+          <img src="images/portfolio/modals/m-restaurant.jpg" alt="Restaurant">
+          <h4 data-lang-key="restaurant-title">Restaurant Website Development</h4>
+          <p data-lang-key="restaurant-desc">We developed a modern, responsive website for a restaurant, aimed at enhancing online presence and improving customer engagement. The project involved creating an intuitive user interface with seamless navigation, an online menu, reservation system, and contact form. The result was a high-performance website that significantly increased the restaurant's online traffic and reservations.</p>
+          <div class="categories">Web Development, UX Design</div>
+          <div class="modal-links">
+            <a href="https://anrmz.github.io/Restaurant/" target="_blank" data-lang-key="details">Details</a>
+            <button type="button" class="modal-close" data-lang-key="close">Close</button>
+          </div>
+        </div>
+      </div>
+      <div id="modal-ecommerce" class="modal">
+        <div class="modal-content">
+          <!-- Use the user's modal image for ecommerce landing -->
+          <img src="images/portfolio/modals/m-ecommerce-landing.jpg" alt="E‑Commerce Landing Page">
+          <h4 data-lang-key="ecommerce-title">E‑Commerce Platform</h4>
+          <p data-lang-key="ecommerce-desc">A modern e-commerce platform built with React.js featuring:</p>
+          <ul>
+            <li data-lang-key="ecommerce-feature1">Responsive product catalog with categories</li>
+            <li data-lang-key="ecommerce-feature2">Search functionality and promotional banners</li>
+            <li data-lang-key="ecommerce-feature3">New arrivals section and detailed product cards</li>
+            <li data-lang-key="ecommerce-feature4">Client testimonials and newsletter subscription</li>
+          </ul>
+          <div class="categories">React.js, E-Commerce, Responsive Design</div>
+          <div class="modal-links">
+            <a href="https://anrmz.github.io/Projet_ecommerce/" target="_blank" data-lang-key="details">Details</a>
+            <button type="button" class="modal-close" data-lang-key="close">Close</button>
+          </div>
+        </div>
+      </div>
+      <div id="modal-nbta" class="modal">
+        <div class="modal-content">
+          <img src="images/portfolio/modals/m-nbtaproject.jpg" alt="NBTA Project">
+          <h4 data-lang-key="nbta-title">NBTA Hospitality Brand</h4>
+          <p data-lang-key="nbta-desc">NBTA is a sophisticated, multi-concept hospitality and cultural venue located in the historic Medina of Tangier, Morocco. We helped position them not just as a business, but as a "green oasis" and a curated experience centered on sustainability, art, and mindful living through comprehensive digital branding and web development.</p>
+          <div class="categories">Branding, Web Development, Digital Strategy</div>
+          <div class="modal-links">
+            <a href="https://anrmz.github.io/nbta/" target="_blank" data-lang-key="details">Details</a>
+            <button type="button" class="modal-close" data-lang-key="close">Close</button>
+          </div>
+        </div>
+      </div>
+      <div id="modal-ecommerce-system" class="modal">
+        <div class="modal-content">
+          <!-- Use the user's modal image for ecommerce system -->
+          <img src="images/portfolio/modals/m-ecommerce.jpg" alt="E‑Commerce System">
+          <h4 data-lang-key="ecommerce-system">E‑Commerce Management System</h4>
+          <p data-lang-key="ecommerce-system-desc">We developed a comprehensive application for managing products, users, orders, and payments. The project included defining functional requirements, designing system architecture, and implementing features using Laravel. The result was a stable, user-friendly application that effectively met the client's needs and expectations, streamlining their e-commerce operations.</p>
+          <div class="categories">Full Stack Development, Laravel, Database Design</div>
+          <div class="modal-links">
+            <a href="#" data-lang-key="private">Private Project</a>
+            <button type="button" class="modal-close" data-lang-key="close">Close</button>
+          </div>
+        </div>
+      </div>
+  </section>
 
-		<div class="row about-content">
-			<div class="col-six tab-full">
-			</div>
+  <!-- Services section -->
+  <section id="services">
+    <div class="section-intro">
+      <h5 data-lang-key="services">Services</h5>
+      <h1 data-lang-key="how-we-drive">How We Drive Growth</h1>
+      <p class="lead" data-lang-key="services-desc">Comprehensive digital solutions tailored to your business needs</p>
+    </div>
+    <div class="services-list">
+      <div class="service-card">
+        <h3 data-lang-key="web-dev">Website Development</h3>
+        <p data-lang-key="web-dev-desc">We create dynamic, responsive websites and applications that convert visitors into customers. From simple landing pages to complex web applications.</p>
+      </div>
+      <div class="service-card">
+        <h3 data-lang-key="seo">SEO Optimization</h3>
+        <p data-lang-key="seo-desc">Improve your search engine rankings and increase organic traffic with our comprehensive SEO strategies tailored to your industry and target audience.</p>
+      </div>
+      <div class="service-card">
+        <h3 data-lang-key="social-media">Social Media Management</h3>
+        <p data-lang-key="social-media-desc">We manage your social presence with engaging content, video, and photography that builds community and drives brand awareness.</p>
+      </div>
+      <div class="service-card">
+        <h3 data-lang-key="branding">Branding & Logo Design</h3>
+        <p data-lang-key="branding-desc">Create a memorable brand identity that stands out from competitors and resonates with your target audience.</p>
+      </div>
+      <div class="service-card">
+        <h3 data-lang-key="email">Email Marketing</h3>
+        <p data-lang-key="email-desc">Build relationships and drive sales with targeted email campaigns that engage your audience and promote your products or services.</p>
+      </div>
+    </div>
+  </section>
 
-			<div class="col-six tab-full">
-				<h3>Skills</h3>
-				<ul class="skill-bars">
-					<li>
-						<div class="progress percent90"><span>90%</span></div>
-						<strong>HTML5</strong>
-					</li>
-					<li>
-						<div class="progress percent85"><span>85%</span></div>
-						<strong>CSS3</strong>
-					</li>
-					<li>
-						<div class="progress percent90"><span>90%</span></div>
-						<strong>Laravel</strong>
-					</li>
-					<li>
-						<div class="progress percent95"><span>95%</span></div>
-						<strong>PHP</strong>
-					</li>
-					<li>
-						<div class="progress percent80"><span>80%</span></div>
-						<strong>React.js / Vue.js</strong>
-					</li>
-					<li>
-						<div class="progress percent85"><span>85%</span></div>
-						<strong>JavaScript</strong>
-					</li>
-					<li>
-						<div class="progress percent75"><span>75%</span></div>
-						<strong>Python</strong>
-					</li>
-					<li>
-						<div class="progress percent70"><span>70%</span></div>
-						<strong>Node.js</strong>
-					</li>
-				</ul> <!-- /skill-bars -->
-				<h3>Tech Stack</h3>
-				<ul class="tech-stack">
-					<li>C</li>
-					<li>C++</li>
-					<li>Python</li>
-					<li>PHP</li>
-					<li>Java</li>
-					<li>HTML5</li>
-					<li>JavaScript</li>
-					<li>Context-API</li>
-					<li>React</li>
-					<li>Vue.js</li>
-					<li>React Native</li>
-					<li>Laravel</li>
-					<li>NodeJS</li>
-					<li>CSS3</li>
-					<li>C#</li>
-				</ul>
-			</div>
-		</div>
+  <!-- Contact section -->
+  <section id="contact">
+    <div class="section-intro">
+      <h5 data-lang-key="contact">Contact</h5>
+      <h1 data-lang-key="ready-to-grow">Ready to Grow Your Business?</h1>
+      <p class="lead" data-lang-key="contact-desc">Let's discuss how we can help you achieve your digital goals</p>
+    </div>
+    <div class="contact-form">
+      <form name="contactForm" id="contactForm" method="post" action="https://api.web3forms.com/submit">
+        <input type="hidden" name="access_key" value="bc746159-a71d-4a41-a776-1606623f60d4">
+        <!-- Honeypot for spam protection -->
+        <input type="checkbox" name="botcheck" id="botcheck" class="hidden" style="display:none;">
+        <div class="form-field">
+          <input name="name" type="text" id="contactName" placeholder="Your Name" data-lang-key="name-placeholder" minlength="2" required>
+        </div>
+        <div class="form-field">
+          <input name="email" type="email" id="contactEmail" placeholder="Your Email" data-lang-key="email-placeholder" required>
+        </div>
+        <div class="form-field">
+          <div class="service-dropdown" style="position:relative;">
+            <div class="dropdown-selected" id="dropdown-selected" data-lang-key="select-service">Select a Service</div>
+            <div class="dropdown-options" id="dropdown-options">
+              <div class="dropdown-option" data-value="Website Development" data-lang-key="web-dev">Website Development</div>
+              <div class="dropdown-option" data-value="SEO Optimization" data-lang-key="seo">SEO Optimization</div>
+              <div class="dropdown-option" data-value="Social Media Management" data-lang-key="social-media">Social Media Management</div>
+              <div class="dropdown-option" data-value="Branding & Logo Design" data-lang-key="branding">Branding & Logo Design</div>
+              <div class="dropdown-option" data-value="Email Marketing" data-lang-key="email">Email Marketing</div>
+              <div class="dropdown-option" data-value="Other" data-lang-key="other">Other</div>
+            </div>
+          </div>
+          <input type="hidden" name="service" id="service-input" required>
+        </div>
+        <div class="form-field">
+          <input name="subject" type="text" id="contactSubject" placeholder="Subject" data-lang-key="subject-placeholder">
+        </div>
+        <div class="form-field">
+          <textarea name="message" id="contactMessage" placeholder="Tell us about your project" data-lang-key="message-placeholder" rows="6" required></textarea>
+        </div>
+        <div class="form-field" style="text-align:center;">
+          <button type="submit" class="submitform" data-lang-key="send-message">Send Message</button>
+        </div>
+      </form>
+      <div id="message-warning" class="message-box warning-message" style="display:none;"></div>
+      <div id="message-success" class="message-box success-message" style="display:none; color:green; text-align:center;">
+        <!-- Inline check icon for the success message -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+        </svg>
+        <span data-lang-key="success-message">Your message was sent, thank you! We'll get back to you soon.</span>
+      </div>
+    </div>
+    <div class="contact-info">
+      <div>
+        <div class="icon">
+          <!-- Inline location/pin icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+          </svg>
+        </div>
+        <h5 data-lang-key="where-to-find">Where to find us</h5>
+        <p>Tangier, Morocco</p>
+      </div>
+      <div>
+        <div class="icon">
+          <!-- Inline envelope/mail icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
+          </svg>
+        </div>
+        <h5 data-lang-key="email-us">Email Us At</h5>
+        <p>anouarmezgualli2@gmail.com</p>
+      </div>
+      <div>
+        <div class="icon">
+          <!-- Inline phone icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+            <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+          </svg>
+        </div>
+        <h5 data-lang-key="call-us">Call Us At</h5>
+        <p>(+212) 66 581 8985</p>
+      </div>
+    </div>
+  </section>
 
-		<div class="row button-section">
-			<div class="col-twelve">
-				<a href="#contact" title="Hire Me" class="button stroke smoothscroll">Hire Me</a>
-			</div>
-		</div>
-	</section> <!-- /process-->
+  <!-- Contact widget -->
+    <div class="contact-widget">
+      <!-- Floating toggle button uses an inline chat icon instead of a font icon -->
+      <div class="widget-toggle" title="Contact">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105"/>
+        </svg>
+      </div>
+      <div class="widget-buttons">
+        <!-- WhatsApp button with inline SVG icon -->
+        <a href="https://wa.me/212655322842" class="widget-button" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+          </svg>
+          <span class="widget-tooltip" data-lang-key="whatsapp">WhatsApp</span>
+        </a>
+        <!-- Phone call button with inline telephone handset icon -->
+        <a href="tel:+212665818985" class="widget-button">
+          <!-- Bootstrap telephone icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M3.654 1.328a.678.678 0 0 1 .58-.066l2.003.735a.678.678 0 0 1 .39.37l.754 1.857a.678.678 0 0 1-.149.73l-1.013 1.014a10.97 10.97 0 0 0 4.523 4.523l1.013-1.013a.678.678 0 0 1 .73-.149l1.857.754a.678.678 0 0 1 .37.39l.735 2.003a.678.678 0 0 1-.066.58A2.745 2.745 0 0 1 12.96 15c-2.962 0-5.904-1.402-8.393-3.89C2.078 8.622.675 5.68.675 2.718c0-.847.442-1.61 1.279-2.453z"/>
+          </svg>
+          <span class="widget-tooltip" data-lang-key="call-now">Call Now</span>
+        </a>
+      </div>
+    </div>
 
-	<!-- Resume Section -->
-	<section id="resume" class="grey-section">
-		<div class="row section-intro">
-			<div class="col-twelve">
-				<h5>Resume</h5>
-				<h1>More of my credentials.</h1>
-				<p class="lead">Aspiring web developer with a strong foundation in front-end and back-end technologies,
-					seeking to apply my skills in a practical environment.</p>
-			</div>
-		</div> <!-- /section-intro-->
+  <!-- Footer -->
+  <footer>
+    <ul class="footer-social">
+      <li><a href="https://instagram.com/amediax" target="_blank" rel="noopener">
+        <!-- Inline Instagram icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+        </svg>
+      </a></li>
+      <li><a href="https://www.tiktok.com/@amediax_" target="_blank" rel="noopener">
+        <!-- Inline TikTok icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/>
+        </svg>
+      </a></li>
+    </ul>
+    <div class="copyright">
+      <span>© Copyright AmediaX 2025.</span>
+    </div>
+    <div id="go-top">
+      <a class="smoothscroll" title="Back to Top" href="#intro">
+        <!-- Inline arrow up icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+          <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
 
-		<div class="row resume-timeline">
-			<div class="col-twelve resume-header">
-				<h2>Work Experience</h2>
-			</div> <!-- /resume-header -->
+  <!-- Language translations script -->
+  <script>
+    // Translation dictionary
+    const translations = {
+      en: {
+        "home": "Home",
+        "about": "About",
+        "portfolio": "Portfolio",
+        "services": "Services",
+        "contact": "Contact",
+        "language": "EN",
+        "welcome": "Welcome to AmediaX",
+        "hero-title": "We Build Digital Success.",
+        "tagline": "Digital Growth Studio",
+        "discover": "Discover Our Services",
+        "meet": "Meet AmediaX",
+        "about-desc": "AmediaX is a digital growth studio that helps brands, businesses, and stores grow online through smart, creative, and strategic digital solutions. We help brands look better, sell more, and grow smarter using modern digital tools.",
+        "mission": "Our Mission",
+        "mission-desc": "To help brands look better, sell more, and grow smarter using modern digital tools. We're not just a social media page maker, not just a designer, not just a developer – we're the full digital solution for business growth.",
+        "approach": "Our Approach",
+        "approach-desc": "Based in Morocco, we work with brands locally and internationally to build comprehensive digital strategies that deliver real results. We combine creative thinking with technical expertise to create solutions that drive growth.",
+        "core-services": "Core Services",
+        "web-dev": "Website Development",
+        "seo": "SEO Optimization",
+        "social-media": "Social Media Management",
+        "branding": "Branding & Logo Design",
+        "email": "Email Marketing",
+        "content": "Content Creation",
+        "strategy": "Digital Strategy",
+        "start-project": "Start Your Project",
+        "success-stories": "Our Client Success Stories",
+        "portfolio-desc": "Explore our latest projects showcasing how we've helped businesses grow through comprehensive digital solutions.",
+        "restaurant-title": "Restaurant Website Development",
+        "ecommerce-title": "E‑Commerce Platform",
+        "nbta-title": "NBTA Hospitality Brand",
+        "ecommerce-system": "E‑Commerce Management System",
+        "branding-web": "Branding & Web",
+        "full-stack": "Full‑Stack Development",
+        "react-ecommerce": "React.js E‑Commerce",
+        "how-we-drive": "How We Drive Growth",
+        "services-desc": "Comprehensive digital solutions tailored to your business needs",
+        "web-dev-desc": "We create dynamic, responsive websites and applications that convert visitors into customers. From simple landing pages to complex web applications.",
+        "seo-desc": "Improve your search engine rankings and increase organic traffic with our comprehensive SEO strategies tailored to your industry and target audience.",
+        "social-media-desc": "We manage your social presence with engaging content, video, and photography that builds community and drives brand awareness.",
+        "branding-desc": "Create a memorable brand identity that stands out from competitors and resonates with your target audience.",
+        "email-desc": "Build relationships and drive sales with targeted email campaigns that engage your audience and promote your products or services.",
+        "ready-to-grow": "Ready to Grow Your Business?",
+        "contact-desc": "Let's discuss how we can help you achieve your digital goals",
+        "name-placeholder": "Your Name",
+        "email-placeholder": "Your Email",
+        "select-service": "Select a Service",
+        "subject-placeholder": "Subject",
+        "message-placeholder": "Tell us about your project",
+        "send-message": "Send Message",
+        "success-message": "Your message was sent, thank you! We'll get back to you soon.",
+        "where-to-find": "Where to find us",
+        "email-us": "Email Us At",
+        "call-us": "Call Us At",
+        "whatsapp": "WhatsApp",
+        "call-now": "Call Now",
+        "instagram": "Instagram",
+        "tiktok": "TikTok",
+        "other": "Other"
+        , "details": "Details"
+        , "close": "Close"
+        , "private": "Private Project"
+      },
+      fr: {
+        "home": "Accueil",
+        "about": "À propos",
+        "portfolio": "Portfolio",
+        "services": "Services",
+        "contact": "Contact",
+        "language": "FR",
+        "welcome": "Bienvenue chez AmediaX",
+        "hero-title": "Nous Construisons la Réussite Numérique.",
+        "tagline": "Studio de Croissance Digitale",
+        "discover": "Découvrez Nos Services",
+        "meet": "Rencontrez AmediaX",
+        "about-desc": "AmediaX est un studio de croissance digitale qui aide les marques, les entreprises et les magasins à se développer en ligne grâce à des solutions digitales intelligentes, créatives et stratégiques. Nous aidons les marques à mieux paraître, à vendre plus et à grandir plus intelligemment en utilisant des outils numériques modernes.",
+        "mission": "Notre Mission",
+        "mission-desc": "Aider les marques à mieux paraître, à vendre plus et à grandir plus intelligemment en utilisant des outils numériques modernes. Nous ne sommes pas seulement un créateur de pages de médias sociaux, pas seulement un designer, pas seulement un développeur – nous sommes la solution numérique complète pour la croissance des entreprises.",
+        "approach": "Notre Approche",
+        "approach-desc": "Basés au Maroc, nous travaillons avec des marques localement et internationalement pour élaborer des stratégies numériques complètes qui donnent des résultats concrets. Nous combinons la pensée créative et l'expertise technique pour créer des solutions qui stimulent la croissance.",
+        "core-services": "Services Principaux",
+        "web-dev": "Développement de Sites Web",
+        "seo": "Optimisation SEO",
+        "social-media": "Gestion des Médias Sociaux",
+        "branding": "Image de Marque & Conception de Logo",
+        "email": "Marketing par E‑mail",
+        "paid-ads": "Publicité Payante",
+        "content": "Création de Contenu",
+        "strategy": "Stratégie Digitale",
+        "start-project": "Commencez Votre Projet",
+        "success-stories": "Nos Réussites Clients",
+        "portfolio-desc": "Découvrez nos derniers projets montrant comment nous avons aidé les entreprises à se développer grâce à des solutions digitales complètes.",
+        "restaurant-title": "Développement de Site Web de Restaurant",
+        "ecommerce-title": "Plateforme E‑Commerce",
+        "nbta-title": "Marque Hôtelière NBTA",
+        "ecommerce-system": "Système de Gestion E‑Commerce",
+        "branding-web": "Image de Marque & Développement Web",
+        "full-stack": "Développement Full‑Stack",
+        "react-ecommerce": "E‑Commerce React.js",
+        "how-we-drive": "Comment Nous Stimulons la Croissance",
+        "services-desc": "Solutions digitales complètes adaptées à vos besoins commerciaux",
+        "web-dev-desc": "Nous créons des sites web et applications dynamiques et réactifs qui convertissent les visiteurs en clients. Des landing pages simples aux applications web complexes.",
+        "seo-desc": "Améliorez votre classement dans les moteurs de recherche et augmentez le trafic organique avec nos stratégies SEO complètes adaptées à votre secteur et à votre public cible.",
+        "social-media-desc": "Nous gérons votre présence sur les médias sociaux avec un contenu engageant, des vidéos et des photos qui construisent une communauté et renforcent la notoriété de la marque.",
+        "branding-desc": "Créez une identité de marque mémorable qui se démarque de la concurrence et résonne avec votre public cible.",
+        "email-desc": "Établissez des relations et stimulez les ventes avec des campagnes d'e‑mailing ciblées qui engagent votre audience et promeuvent vos produits ou services.",
+        "paid-ads-desc": "Maximisez votre ROI avec des campagnes publicitaires payantes stratégiques sur Meta, Google et d'autres plateformes qui ciblent vos clients idéaux.",
+        "ready-to-grow": "Prêt à Faire Croître Votre Entreprise ?",
+        "contact-desc": "Discutons de la façon dont nous pouvons vous aider à atteindre vos objectifs digitaux",
+        "name-placeholder": "Votre Nom",
+        "email-placeholder": "Votre E‑mail",
+        "select-service": "Sélectionnez un Service",
+        "subject-placeholder": "Sujet",
+        "message-placeholder": "Parlez‑nous de votre projet",
+        "send-message": "Envoyer le Message",
+        "success-message": "Votre message a été envoyé, merci ! Nous vous répondrons bientôt.",
+        "where-to-find": "Où nous trouver",
+        "email-us": "Envoyez‑nous un E‑mail",
+        "call-us": "Appelez‑nous",
+        "whatsapp": "WhatsApp",
+        "call-now": "Appeler Maintenant",
+        "instagram": "Instagram",
+        "tiktok": "TikTok",
+        "other": "Autre"
+        , "details": "Détails"
+        , "close": "Fermer"
+        , "private": "Projet Privé"
+      },
+      es: {
+        "home": "Inicio",
+        "about": "Acerca de",
+        "portfolio": "Portafolio",
+        "services": "Servicios",
+        "contact": "Contacto",
+        "language": "ES",
+        "welcome": "Bienvenido a AmediaX",
+        "hero-title": "Construimos el Éxito Digital.",
+        "tagline": "Estudio de Crecimiento Digital",
+        "discover": "Descubre Nuestros Servicios",
+        "meet": "Conoce AmediaX",
+        "about-desc": "AmediaX es un estudio de crecimiento digital que ayuda a marcas, empresas y tiendas a crecer en línea a través de soluciones digitales inteligentes, creativas y estratégicas. Ayudamos a las marcas a verse mejor, vender más y crecer de manera más inteligente utilizando herramientas digitales modernas.",
+        "mission": "Nuestra Misión",
+        "mission-desc": "Ayudar a las marcas a verse mejor, vender más y crecer de manera más inteligente utilizando herramientas digitales modernas. No somos solo creadores de páginas de redes sociales, no solo diseñadores, no solo desarrolladores – somos la solución digital completa para el crecimiento empresarial.",
+        "approach": "Nuestro Enfoque",
+        "approach-desc": "Con base en Marruecos, trabajamos con marcas a nivel local e internacional para construir estrategias digitales integrales que ofrecen resultados reales. Combinamos el pensamiento creativo con la experiencia técnica para crear soluciones que impulsen el crecimiento.",
+        "core-services": "Servicios Principales",
+        "web-dev": "Desarrollo de Sitios Web",
+        "seo": "Optimización SEO",
+        "social-media": "Gestión de Redes Sociales",
+        "branding": "Branding & Diseño de Logotipos",
+        "email": "Email Marketing",
+        "paid-ads": "Publicidad Pagada",
+        "content": "Creación de Contenido",
+        "strategy": "Estrategia Digital",
+        "start-project": "Comienza Tu Proyecto",
+        "success-stories": "Nuestras Historias de Éxito",
+        "portfolio-desc": "Explora nuestros últimos proyectos que muestran cómo hemos ayudado a las empresas a crecer a través de soluciones digitales integrales.",
+        "restaurant-title": "Desarrollo de Sitio Web para Restaurante",
+        "ecommerce-title": "Plataforma de Comercio Electrónico",
+        "nbta-title": "Marca de Hospitalidad NBTA",
+        "ecommerce-system": "Sistema de Gestión de Comercio Electrónico",
+        "branding-web": "Branding & Desarrollo Web",
+        "full-stack": "Desarrollo Full‑Stack",
+        "react-ecommerce": "Comercio Electrónico con React.js",
+        "how-we-drive": "Cómo Impulsamos el Crecimiento",
+        "services-desc": "Soluciones digitales integrales adaptadas a las necesidades de tu negocio",
+        "web-dev-desc": "Creamos sitios web y aplicaciones dinámicas y receptivas que convierten visitantes en clientes. Desde páginas de destino simples hasta aplicaciones web complejas.",
+        "seo-desc": "Mejora tu posicionamiento en motores de búsqueda y aumenta el tráfico orgánico con nuestras estrategias SEO integrales adaptadas a tu industria y público objetivo.",
+        "social-media-desc": "Gestionamos tu presencia en redes sociales con contenido atractivo, video y fotografía que construye comunidad e impulsa el reconocimiento de marca.",
+        "branding-desc": "Crea una identidad de marca memorable que se destaque de la competencia y resuene con tu público objetivo.",
+        "email-desc": "Construye relaciones e impulsa las ventas con campañas de email marketing dirigidas que involucran a tu audiencia y promocionan tus productos o servicios.",
+        "paid-ads-desc": "Maximiza tu ROI con campañas publicitarias pagadas estratégicas en Meta, Google y otras plataformas que se dirigen a tus clientes ideales.",
+        "ready-to-grow": "¿Listo para Hacer Crecer tu Negocio?",
+        "contact-desc": "Hablemos sobre cómo podemos ayudarte a alcanzar tus objetivos digitales",
+        "name-placeholder": "Tu Nombre",
+        "email-placeholder": "Tu Correo Electrónico",
+        "select-service": "Selecciona un Servicio",
+        "subject-placeholder": "Asunto",
+        "message-placeholder": "Cuéntanos sobre tu proyecto",
+        "send-message": "Enviar Mensaje",
+        "success-message": "Tu mensaje fue enviado, ¡gracias! Nos pondremos en contacto contigo pronto.",
+        "where-to-find": "Dónde Encontrarnos",
+        "email-us": "Envíanos un Correo",
+        "call-us": "Llámanos",
+        "whatsapp": "WhatsApp",
+        "call-now": "Llamar Ahora",
+        "instagram": "Instagram",
+        "tiktok": "TikTok",
+        "other": "Otro"
+        , "details": "Detalles"
+        , "close": "Cerrar"
+        , "private": "Proyecto Privado"
+      },
+      ar: {
+        "home": "الرئيسية",
+        "about": "من نحن",
+        "portfolio": "معرض الأعمال",
+        "services": "الخدمات",
+        "contact": "اتصل بنا",
+        "language": "AR",
+        "welcome": "مرحبًا بكم في AmediaX",
+        "hero-title": "نحن نبني النجاح الرقمي.",
+        "tagline": "استوديو النمو الرقمي",
+        "discover": "اكتشف خدماتنا",
+        "meet": "تعرف على AmediaX",
+        "about-desc": "AmediaX هو استوديو للنمو الرقمي يساعد العلامات التجارية والشركات والمتاجر على النمو عبر الإنترنت من خلال حلول رقمية ذكية وإبداعية واستراتيجية. نحن نساعد العلامات التجارية على الظهور بشكل أفضل، وبيع المزيد، والنمو بذكاء باستخدام الأدوات الرقمية الحديثة.",
+        "mission": "مهمتنا",
+        "mission-desc": "مساعدة العلامات التجارية على الظهور بشكل أفضل، وبيع المزيد، والنمو بذكاء باستخدام الأدوات الرقمية الحديثة. نحن لسنا مجرد منشئ لصفحات الوسائط الاجتماعية، ولسنا مصممين فقط، ولسنا مطورين فقط – نحن الحل الرقمي الكامل لنمو الأعمال.",
+        "approach": "نهجنا",
+        "approach-desc": "مقيمون في المغرب، نعمل مع العلامات التجارية محليًا ودوليًا لبناء استراتيجيات رقمية شاملة تقدم نتائج حقيقية. نجمع بين التفكير الإبداعي والخبرة التقنية لإنشاء حلول تحفز النمو.",
+        "core-services": "الخدمات الأساسية",
+        "web-dev": "تطوير مواقع الويب",
+        "seo": "تحسين محركات البحث",
+        "social-media": "إدارة وسائل التواصل الاجتماعي",
+        "branding": "الهوية البصرية وتصميم الشعارات",
+        "email": "التسويق عبر البريد الإلكتروني",
+        "paid-ads": "الإعلانات المدفوعة",
+        "content": "إنشاء المحتوى",
+        "strategy": "الإستراتيجية الرقمية",
+        "start-project": "ابدأ مشروعك",
+        "success-stories": "قصص نجاح عملائنا",
+        "portfolio-desc": "استكشف أحدث مشاريعنا التي تظهر كيف ساعدنا الشركات على النمو من خلال حلول رقمية شاملة.",
+        "restaurant-title": "تطوير موقع ويب للمطعم",
+        "ecommerce-title": "منصة التجارة الإلكترونية",
+        "nbta-title": "علامة NBTA للضيافة",
+        "ecommerce-system": "نظام إدارة التجارة الإلكترونية",
+        "branding-web": "الهوية البصرية وتطوير الويب",
+        "full-stack": "تطوير Full‑Stack",
+        "react-ecommerce": "تجارة إلكترونية بـ React.js",
+        "how-we-drive": "كيف نقود النمو",
+        "services-desc": "حلول رقمية شاملة مصممة خصيصًا لاحتياجات عملك",
+        "web-dev-desc": "نحن نخلق مواقع وتطبيقات ويب ديناميكية ومستجيبة تحول الزوار إلى عملاء. من صفحات الهبوط البسيطة إلى تطبيقات الويب المعقدة.",
+        "seo-desc": "حسن ترتيب موقعك في محركات البحث وزد حركة المرور العضوية باستخدام استراتيجيات SEO الشاملة المصممة خصيصًا لصناعتك وجمهورك المستهدف.",
+        "social-media-desc": "ندير حضورك على وسائل التواصل الاجتماعي بمحتوى جذاب، وفيديو، وتصوير فوتوغرافي يبني المجتمع ويدفع بالوعي بالعلامة التجارية.",
+        "branding-desc": "أنشئ هوية علامة تجارية لا تُنسى تبرز من المنافسة وتتوافق مع جمهورك المستهدف.",
+        "email-desc": "ابنِ علاقات وادفع بالمبيعات مع حملات التسويق عبر البريد الإلكتروني المستهدفة التي تشرك جمهورك وتروج لمنتجاتك أو خدماتك.",
+        "paid-ads-desc": "قم بتعظيم عائد الاستثمار الخاص بك مع حملات إعلانية مدفوعة استراتيجية على Meta وGoogle ومنصات أخرى تستهدف عملاءك المثاليين.",
+        "ready-to-grow": "مستعد لنمو عملك؟",
+        "contact-desc": "دعنا نناقش كيف يمكننا مساعدتك في تحقيق أهدافك الرقمية",
+        "name-placeholder": "اسمك",
+        "email-placeholder": "بريدك الإلكتروني",
+        "select-service": "اختر خدمة",
+        "subject-placeholder": "الموضوع",
+        "message-placeholder": "أخبرنا عن مشروعك",
+        "send-message": "إرسال الرسالة",
+        "success-message": "تم إرسال رسالتك، شكرًا لك! سوف نعود إليك قريبًا.",
+        "where-to-find": "أين تجدنا",
+        "email-us": "راسلنا على البريد الإلكتروني",
+        "call-us": "اتصل بنا",
+        "whatsapp": "واتساب",
+        "call-now": "اتصل الآن",
+        "instagram": "إنستغرام",
+        "tiktok": "تيك توك",
+        "other": "آخر"
+        , "details": "التفاصيل"
+        , "close": "إغلاق"
+        , "private": "مشروع خاص"
+      }
+    };
 
-			<div class="col-twelve">
-				<div class="timeline-wrap">
-					<div class="timeline-block">
-						<div class="timeline-ico">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24"
-								fill="currentColor">
-								<path
-									d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z" />
-							</svg>
-						</div>
-						<div class="timeline-header">
-							<h3>Email marketing</h3>
-							<p>October 2024 - Present</p>
-						</div>
-						<div class="timeline-content">
-							<h4>Cloud Marketing Hub, Tangier, Maroc</h4>
-							<p>Analysis of sending performance and adjustment of strategies. Working in coordination with the marketing team to ensure campaign effectiveness. Warming up servers for the team to optimize campaign sending.</p>
-						</div>
-					</div> <!-- /timeline-block -->
+    // Current language; default is English
+    let currentLang = 'en';
 
-					<div class="timeline-block">
-						<div class="timeline-ico">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="24" height="24"
-								fill="currentColor">
-								<path
-									d="M255.03 261.65c6.25 6.25 16.38 6.25 22.63 0l11.31-11.31c6.25-6.25 6.25-16.38 0-22.63L253.25 192l35.71-35.72c6.25-6.25 6.25-16.38 0-22.63l-11.31-11.31c-6.25-6.25-16.38-6.25-22.63 0l-58.34 58.34c-6.25 6.25-6.25 16.38 0 22.63l58.35 58.34zm96.01-11.3l11.31 11.31c6.25 6.25 16.38 6.25 22.63 0l58.34-58.34c6.25-6.25 6.25-16.38 0-22.63l-58.34-58.34c-6.25-6.25-16.38-6.25-22.63 0l-11.31 11.31c-6.25 6.25-6.25 16.38 0 22.63L386.75 192l-35.71 35.72c-6.25 6.25-6.25 16.38 0 22.63zM624 416H381.54c-.74 19.81-14.71 32-32.74 32H288c-18.69 0-33.02-17.47-32.77-32H16c-8.8 0-16 7.2-16 16v16c0 35.2 28.8 64 64 64h512c35.2 0 64-28.8 64-64v-16c0-8.8-7.2-16-16-16zM576 48c0-26.4-21.6-48-48-48H112C85.6 0 64 21.6 64 48v336h512V48zm-64 272H128V64h384v256z" />
-							</svg>
-						</div>
-						<div class="timeline-header">
-							<h3>Web Development</h3>
-							<p>May 2024 - June 2024</p>
-						</div>
-						<div class="timeline-content">
-							<h4>Amendis, Tangier, Maroc</h4>
-							<p>As part of an internship agreement between Amendis, the intern (myself), and OFPPT Tangier, I contributed to the upgrade of Amendis' website. This project aimed to apply theoretical knowledge gained in the classroom to real-world practical scenarios. Through this work, I developed technical and operational skills, particularly in managing public networks related to water and electricity distribution, as well as wastewater management.
+    /**
+     * Apply translations based on selected language.
+     */
+    function applyTranslations(lang) {
+      // Update text content and placeholders
+      document.querySelectorAll('[data-lang-key]').forEach(element => {
+        const key = element.getAttribute('data-lang-key');
+        if (translations[lang] && translations[lang][key]) {
+          if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.placeholder = translations[lang][key];
+          } else {
+            element.textContent = translations[lang][key];
+          }
+        }
+      });
+      // Update language and direction attributes
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+      // Update language code on button
+      const langBtnSpan = document.querySelector('.language-btn span[data-lang-key="language"]');
+      if (langBtnSpan) {
+        langBtnSpan.textContent = translations[lang]['language'];
+      }
+      // Highlight active option
+      document.querySelectorAll('.language-option').forEach(option => {
+        const optionLang = option.getAttribute('data-lang');
+        if (optionLang === lang) {
+          option.classList.add('active');
+        } else {
+          option.classList.remove('active');
+        }
+      });
+    }
 
-</p>
-						</div>
-					</div> <!-- /timeline-block -->
+    /**
+     * Handle language switcher click events.
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+      // Toggle nav on mobile
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
+      // Close menu on link click (mobile)
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+          }
+        });
+      });
+      // Language dropdown
+      const langBtn = document.querySelector('.language-btn');
+      const langOptions = document.querySelector('.language-options');
+      langBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        langOptions.classList.toggle('active');
+      });
+      document.addEventListener('click', (e) => {
+        if (!langOptions.contains(e.target) && e.target !== langBtn) {
+          langOptions.classList.remove('active');
+        }
+      });
+      // Select language
+      document.querySelectorAll('.language-option').forEach(option => {
+        option.addEventListener('click', () => {
+          const lang = option.getAttribute('data-lang');
+          currentLang = lang;
+          applyTranslations(lang);
+          langOptions.classList.remove('active');
+        });
+      });
+      // Apply default translations on load
+      applyTranslations(currentLang);
 
-					<div class="timeline-block">
-						<div class="timeline-ico">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24"
-								fill="currentColor">
-								<path
-									d="M501.1 395.7L384 278.6c-23.1-23.1-57.6-27.6-85.4-13.9L192 158.1V96L64 0 0 64l96 128h62.1l106.6 106.6c-13.6 27.8-9.2 62.3 13.9 85.4l117.1 117.1c14.6 14.6 38.2 14.6 52.7 0l52.7-52.7c14.5-14.6 14.5-38.2 0-52.7zM331.7 225c28.3 0 54.9 11 74.9 31l19.4 19.4c15.8-6.9 30.8-16.5 43.8-29.5 37.1-37.1 49.7-89.3 37.9-136.7-2.2-9-13.5-12.1-20.1-5.5l-74.4 74.4-67.9-11.3L334 98.9l74.4-74.4c6.6-6.6 3.4-17.9-5.7-20.2-47.4-11.7-99.6.9-136.6 37.9-28.5 28.5-41.9 66.1-41.2 103.6l82.1 82.1c8.1-1.9 16.5-2.9 24.7-2.9zm-103.9 82l-56.7-56.7L18.7 402.8c-25 25-25 65.5 0 90.5s65.5 25 90.5 0l123.6-123.6c-7.6-19.9-9.9-41.6-5-62.7zM64 472c-13.2 0-24-10.8-24-24 0-13.3 10.7-24 24-24s24 10.7 24 24c0 13.2-10.7 24-24 24z" />
-							</svg>
-						</div>
-						<div class="timeline-header">
-							<h3>Technician and Sales Associate</h3>
-							<p>August 2022 - September 2022</p>
-						</div>
-						<div class="timeline-content">
-							<h4>Mobile and Computer Repair Shop</h4>
-							<p>Gained experience in diagnosing and resolving technical issues while advising customers
-								on selecting devices that meet their needs.</p>
-						</div>
-					</div> <!-- /timeline-block -->
-				</div> <!-- /timeline-wrap -->
-			</div> <!-- /col-twelve -->
-		</div> <!-- /resume-timeline -->
+      // Contact widget toggle
+      const widgetToggle = document.querySelector('.widget-toggle');
+      const widgetButtons = document.querySelector('.widget-buttons');
+      widgetToggle.addEventListener('click', () => {
+        widgetButtons.classList.toggle('active');
+      });
 
-		<div class="row resume-timeline">
-			<div class="col-twelve resume-header">
-			<h2>Education</h2>
-			</div> <!-- /resume-header -->			
-					<div class="timeline-block">
-						<div class="timeline-ico">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="24" height="24"
-								fill="currentColor">
-								<path
-									d="M622.34 153.2L343.4 67.5c-15.2-4.67-31.6-4.67-46.79 0L17.66 153.2c-23.54 7.23-23.54 38.36 0 45.59l48.63 14.94c-10.67 13.19-17.23 29.28-17.88 46.9C38.78 266.15 32 276.11 32 288c0 10.78 5.68 19.85 13.86 25.65L20.33 428.53C18.11 438.52 25.71 448 35.94 448h56.11c10.24 0 17.84-9.48 15.62-19.47L82.14 313.65C90.32 307.85 96 298.78 96 288c0-11.57-6.47-21.25-15.66-26.87.76-15.02 8.44-28.3 20.69-36.72L296.6 284.5c9.06 2.78 26.44 6.25 46.79 0l278.95-85.7c23.55-7.24 23.55-38.36 0-45.6zM352.79 315.09c-28.53 8.76-52.84 3.92-65.59 0l-145.02-44.55L128 384c0 35.35 85.96 64 192 64s192-28.65 192-64l-14.18-113.47-145.03 44.56z" />
-							</svg>
-						</div>
-						<div class="timeline-header">
-							<h3>Digital Development, Web Full Stack</h3>
-							<p>2022 - 2024</p>
-						</div>
-						<div class="timeline-content">
-							<h4>OFPPT - ISMONTIC, Tangier, Maroc</h4>
-							<p>Specializing in both front-end and back-end development, with a focus on creating
-								responsive user interfaces and server-side logic.</p>
-						</div>
-					</div> <!-- /timeline-block -->
+      // Custom dropdown for service selection
+      const dropdownSelected = document.getElementById('dropdown-selected');
+      const dropdownOptions = document.getElementById('dropdown-options');
+      const serviceInput = document.getElementById('service-input');
+      dropdownSelected.addEventListener('click', (e) => {
+        dropdownOptions.classList.toggle('active');
+        dropdownSelected.classList.toggle('active');
+      });
+      document.querySelectorAll('.dropdown-option').forEach(option => {
+        option.addEventListener('click', () => {
+          dropdownSelected.textContent = option.textContent;
+          serviceInput.value = option.getAttribute('data-value');
+          dropdownOptions.classList.remove('active');
+          dropdownSelected.classList.remove('active');
+        });
+      });
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.service-dropdown')) {
+          dropdownOptions.classList.remove('active');
+          dropdownSelected.classList.remove('active');
+        }
+      });
 
-					<div class="timeline-block">
-						<div class="timeline-ico">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="24" height="24"
-								fill="currentColor">
-								<path
-									d="M622.34 153.2L343.4 67.5c-15.2-4.67-31.6-4.67-46.79 0L17.66 153.2c-23.54 7.23-23.54 38.36 0 45.59l48.63 14.94c-10.67 13.19-17.23 29.28-17.88 46.9C38.78 266.15 32 276.11 32 288c0 10.78 5.68 19.85 13.86 25.65L20.33 428.53C18.11 438.52 25.71 448 35.94 448h56.11c10.24 0 17.84-9.48 15.62-19.47L82.14 313.65C90.32 307.85 96 298.78 96 288c0-11.57-6.47-21.25-15.66-26.87.76-15.02 8.44-28.3 20.69-36.72L296.6 284.5c9.06 2.78 26.44 6.25 46.79 0l278.95-85.7c23.55-7.24 23.55-38.36 0-45.6zM352.79 315.09c-28.53 8.76-52.84 3.92-65.59 0l-145.02-44.55L128 384c0 35.35 85.96 64 192 64s192-28.65 192-64l-14.18-113.47-145.03 44.56z" />
-							</svg>
-						</div>
-						<div class="timeline-header">
-							<h3>Baccalaureate in Physical Sciences</h3>
-							<p>2021 - 2022</p>
-						</div>
-						<div class="timeline-content">
-							<h4>Lycée Jabal Tarik, Tangier</h4>
-							<p>Foundation in physical sciences, fostering analytical and problem-solving skills
-								essential for technology fields.</p>
-						</div>
-					</div> <!-- /timeline-block -->
-				</div> <!-- /timeline-wrap -->
-			</div> <!-- /col-twelve -->
-		</div> <!-- /resume-timeline -->
-	</section> <!-- /features -->
+      // Form submission (via fetch to Web3Forms)
+      const contactForm = document.getElementById('contactForm');
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Validate service selection
+        if (!serviceInput.value) {
+          alert(translations[currentLang]['select-service']);
+          dropdownSelected.style.borderColor = 'red';
+          return;
+        }
+        // Build FormData
+        const formData = new FormData(contactForm);
+        formData.append('_timestamp', new Date().getTime());
+        // Show loader (could implement loader UI here)
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        }).then(async response => {
+          const data = await response.json();
+          if (response.ok && data.success) {
+            document.getElementById('message-success').style.display = 'block';
+            contactForm.reset();
+            dropdownSelected.textContent = translations[currentLang]['select-service'];
+            serviceInput.value = '';
+            setTimeout(() => {
+              document.getElementById('message-success').style.display = 'none';
+            }, 5000);
+          } else {
+            document.getElementById('message-warning').textContent = data.message || 'Error sending message. Please try again.';
+            document.getElementById('message-warning').style.display = 'block';
+          }
+        }).catch(() => {
+          document.getElementById('message-warning').textContent = 'Network error. Please check your connection and try again.';
+          document.getElementById('message-warning').style.display = 'block';
+        });
+      });
 
-	<!-- Portfolio Section -->
-	<section id="portfolio">
-		<div class="row section-intro">
-			<div class="col-twelve">
-				<h5>Portfolio</h5>
-				<h1>Check Out Some of My Works.</h1>
-				<p class="lead">Explore my latest projects showcasing full-stack development skills in creating
-					responsive, efficient, and user-friendly applications.</p>
-			</div>
-		</div> <!-- /section-intro-->
-
-		<div class="row portfolio-content">
-			<div class="row portfolio-content">
-				<div class="col-twelve">
-					<div id="folio-wrapper" class="block-1-2 block-mob-full stack">
-						<div class="bgrid folio-item">
-							<div class="item-wrap">
-								<img src="images/portfolio/restaurant.jpg">
-								<a href="#modal-01" class="overlay">
-									<div class="folio-item-table">
-										<div class="folio-item-cell">
-											<h3 class="folio-title">Restaurant Website Development</h3>
-											<span class="folio-types">Web Development</span>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div> <!-- /folio-item -->
-
-						<div class="bgrid folio-item">
-							<div class="item-wrap">
-								<img src="images/portfolio/ecommerce-landing.jpg" alt="E-Commerce Project"
-									loading="lazy">
-								<a href="#modal-02" class="overlay">
-									<div class="folio-item-table">
-										<div class="folio-item-cell">
-											<h3 class="folio-title">Projet E-Commerce</h3>
-											<span class="folio-types">React.js E-Commerce</span>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div> <!-- /folio-item -->
-
-						<div class="bgrid folio-item">
-							<div class="item-wrap">
-								<img src="images/portfolio/nbtaproject.jpg">
-								<a href="#modal-03" class="overlay">
-									<div class="folio-item-table">
-										<div class="folio-item-cell">
-											<h3 class="folio-title">NBTA project</h3>
-											<span class="folio-types">Web Development</span>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div> <!-- /folio-item -->
-
-						<div class="bgrid folio-item">
-							<div class="item-wrap">
-								<img src="images/portfolio/ecommerce.jpg">
-								<a href="#modal-04" class="overlay">
-									<div class="folio-item-table">
-										<div class="folio-item-cell">
-											<h3 class="folio-title">Integrated E-Commerce Management System</h3>
-											<span class="folio-types">Web Development</span>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div> <!-- /folio-item -->
-
-						<!-- modal popups -->
-						<div id="modal-01" class="popup-modal slider mfp-hide">
-							<div class="media">
-								<img src="images/portfolio/modals/m-restaurant.jpg" alt="" />
-							</div>
-							<div class="description-box">
-								<h4>Restaurant</h4>
-								<p>Project description. Developed a modern, responsive website for a restaurant, aimed
-									at enhancing online presence and improving customer engagement. The project involved
-									creating an intuitive user interface with seamless navigation, an online menu,
-									reservation system, and contact form. Using JavaScript for dynamic content and CSS
-									for stylish, mobile-friendly design, I delivered a high-performance website that
-									significantly increased the restaurant's online traffic and reservations.</p>
-								<div class="categories">Web Development</div>
-							</div>
-							<div class="link-box">
-								<a href="https://anrmz.github.io/Restaurant/">Details</a>
-								<a href="#" class="popup-modal-dismiss">Close</a>
-							</div>
-						</div> <!-- /modal-01 -->
-
-						<div id="modal-02" class="popup-modal slider mfp-hide">
-							<div class="media">
-								<img src="images/portfolio/modals/m-ecommerce-landing.jpg" alt="E-Commerce Project"
-									loading="lazy">
-							</div>
-							<div class="description-box">
-								<h4>Projet E-Commerce</h4>
-								<p>A modern e-commerce platform built with React.js featuring:</p>
-								<ul>
-									<li>Responsive product catalog with categories (Women, Men, Kids)</li>
-									<li>Search functionality and promotional banners</li>
-									<li>New arrivals section and detailed product cards</li>
-									<li>Client testimonials and newsletter subscription</li>
-								</ul>
-								<div class="categories">React.js, Context API, Responsive Design</div>
-							</div>
-							<div class="link-box">
-								<a href="https://anrmz.github.io/Projet_ecommerce/">Details</a>
-								<a href="#" class="popup-modal-dismiss">Close</a>
-							</div>
-						</div> <!-- /modal-02 -->
-
-						<div id="modal-03" class="popup-modal slider mfp-hide">
-							<div class="media">
-								<img src="images/portfolio/modals/m-nbtaproject.jpg" alt="" />
-							</div>
-							<div class="description-box">
-								<h4>NBTA project</h4>
-								<p>NBTA is a sophisticated, multi-concept hospitality and cultural venue located in the historic Medina of Tangier, Morocco. It positions itself not just as a business, but as a "green oasis" and a curated experience centered on sustainability, art, and mindful living.</p>
-								<div class="categories">Web Development</div>
-							</div>
-							<div class="link-box">
-								<a href="https://anrmz.github.io/nbta/">Details</a>
-								<a href="#" class="popup-modal-dismiss">Close</a>
-							</div>
-						</div> <!-- /modal-03 -->
-
-						<div id="modal-04" class="popup-modal slider mfp-hide">
-							<div class="media">
-								<img src="images/portfolio/modals/m-ecommerce.jpg" alt="" />
-							</div>
-							<div class="description-box">
-								<h4>E-Commerce Management System</h4>
-								<p>Project description. Developed a comprehensive application for managing products,
-									users, orders, and payments. The project included defining functional requirements,
-									designing system architecture, and implementing features using Laravel. Ensured
-									robust performance with thorough testing and deployed the solution. The result was a
-									stable, user-friendly application that effectively met the client's needs and
-									expectations.</p>
-								<div class="categories">Web Development</div>
-							</div>
-							<div class="link-box">
-								<a href="#">Private Project</a>
-								<a href="#" class="popup-modal-dismiss">Close</a>
-							</div>
-						</div> <!-- /modal-04 -->
-					</div> <!-- /portfolio-wrapper -->
-				</div> <!-- /twelve -->
-			</div> <!-- /portfolio-content -->
-	</section> <!-- /portfolio -->
-
-	<!-- services Section -->
-	<section id="services">
-		<div class="overlay"></div>
-		<div class="row section-intro">
-			<div class="col-twelve">
-				<h5>Services</h5>
-				<h1>What Can I Do For You?</h1>
-			</div>
-		</div> <!-- /section-intro -->
-
-		<div class="row services-content">
-			<div id="owl-slider" class="owl-carousel services-list">
-				<div class="service">
-					<div class="service-card">
-						<div class="service-content">
-							<h3>Web Development</h3>
-							<p class="desc">I create dynamic and responsive websites and applications with expertise
-								spanning both front-end and back-end development, ensuring comprehensive solutions
-								tailored to your needs.</p>
-						</div>
-					</div>
-				</div> <!-- /service -->
-
-				<div class="service">
-					<div class="service-card">
-						<div class="service-content">
-							<h3>Front-End Development</h3>
-							<p class="desc">Crafting engaging and responsive user interfaces using JavaScript, React.js,
-								Vue.js, HTML, and CSS to create intuitive digital experiences.</p>
-						</div>
-					</div>
-				</div> <!-- /service -->
-
-				<div class="service">
-					<div class="service-card">
-						<span class="icon"><i class="icon-server"></i></span>
-						<div class="service-content">
-							<h3>Back-End Development</h3>
-							<p class="desc">Building robust server-side solutions with PHP, Laravel, Node.js, managing
-								databases with SQL and MySQL, and developing RESTful APIs.</p>
-						</div>
-					</div>
-				</div> <!-- /service -->
-
-				
-			</div> <!-- /services-list -->
-		</div> <!-- /services-content -->
-	</section> <!-- /services -->
-
-	<!-- contact -->
-	<section id="contact">
-		<div class="row section-intro">
-			<div class="col-twelve">
-				<h5>Contact</h5>
-				<h1>I'd Love To Hear From You.</h1>
-			</div>
-		</div> <!-- /section-intro -->
-
-		<div class="row contact-form">
-			<div class="col-twelve">
-				<!-- Form -->
-				<form name="contactForm" id="contactForm" method="post" action="https://api.web3forms.com/submit">
-					<input type="hidden" name="access_key" value="bc746159-a71d-4a41-a776-1606623f60d4">
-					<!-- Honeypot for spam protection -->
-					<input type="checkbox" name="botcheck" id="botcheck" class="hidden" style="display: none;">
-
-					<fieldset>
-						<div class="form-field">
-							<input name="name" type="text" id="contactName" placeholder="Name" value="" minlength="2"
-								required>
-						</div>
-						<div class="form-field">
-							<input name="email" type="email" id="contactEmail" placeholder="Email" value="" required>
-						</div>
-						<div class="form-field">
-							<input name="subject" type="text" id="contactSubject" placeholder="Subject" value="">
-						</div>
-						<div class="form-field">
-							<textarea name="message" id="contactMessage" placeholder="Your Message" rows="10" cols="50"
-								required></textarea>
-						</div>
-						<div class="form-field">
-							<button type="submit" class="submitform">Submit</button>
-							<div id="submit-loader">
-								<div class="text-loader">Sending...</div>
-								<div class="s-loader">
-									<div class="bounce1"></div>
-									<div class="bounce2"></div>
-									<div class="bounce3"></div>
-								</div>
-							</div>
-						</div>
-					</fieldset>
-				</form>
-
-				<!-- Messages -->
-				<div id="message-warning" class="message-box warning-message" style="display: none;"></div>
-				<div id="message-success" class="message-box success-message" style="display: none;">
-					<i class="fa fa-check"></i>Your message was sent, thank you!<br>
-				</div>
-			</div> <!-- /col-twelve -->
-		</div> <!-- /contact-form -->
-	</section>
-
-	<!-- JavaScript for form submission -->
-	<script>
-		document.getElementById('contactForm').addEventListener('submit', function (e) {
-			e.preventDefault();
-
-			// Show loader
-			document.getElementById('submit-loader').style.display = 'block';
-
-			// Hide messages
-			document.getElementById('message-warning').style.display = 'none';
-			document.getElementById('message-success').style.display = 'none';
-
-			// Get form data
-			const formData = new FormData(this);
-
-			// Add timestamp to prevent caching
-			formData.append('_timestamp', new Date().getTime());
-
-			// Submit to Web3Forms
-			fetch('https://api.web3forms.com/submit', {
-				method: 'POST',
-				body: formData
-			})
-				.then(async response => {
-					const data = await response.json();
-					if (response.ok && data.success) {
-						// Show success message
-						document.getElementById('message-success').style.display = 'block';
-						// Reset form
-						document.getElementById('contactForm').reset();
-						// Hide success message after 5 seconds
-						setTimeout(() => {
-							document.getElementById('message-success').style.display = 'none';
-						}, 5000);
-					} else {
-						// Show error message
-						document.getElementById('message-warning').innerHTML = data.message || 'Error sending message. Please try again.';
-						document.getElementById('message-warning').style.display = 'block';
-					}
-				})
-				.catch(error => {
-					document.getElementById('message-warning').innerHTML = 'Network error. Please check your connection and try again.';
-					document.getElementById('message-warning').style.display = 'block';
-				})
-				.finally(() => {
-					// Hide loader
-					document.getElementById('submit-loader').style.display = 'none';
-				});
-		});
-	</script>
-
-	<div class="row contact-info">
-		<div class="col-four tab-full">
-			<div class="icon">
-				<i class="icon-pin"></i>
-			</div>
-			<h5>Where to find me</h5>
-			<p>Tangier, Morocco.</p>
-		</div>
-		<div class="col-four tab-full collapse">
-			<div class="icon">
-				<i class="icon-mail"></i>
-			</div>
-			<h5>Email Me At</h5>
-			<p>anouarmezgualli17@gmail.com</p>
-		</div>
-		<div class="col-four tab-full">
-			<div class="icon">
-				<i class="icon-phone"></i>
-			</div>
-			<h5>Call Me At</h5>
-			<p>Phone: (+212) 66 581 8985</p>
-		</div>
-	</div> <!-- /contact-info -->
-	</section> <!-- /contact -->
-
-	<!-- footer -->
-	<footer>
-		<div class="row">
-			<div class="col-six tab-full pull-right social">
-				<ul class="footer-social">
-					<li><a href="https://x.com/anr_mz"><i class="fa fa-twitter"></i></a></li>
-					<li><a href="http://instagram.com/anrmez"><i class="fa fa-instagram"></i></a></li>
-					<li><a href="https://www.linkedin.com/in/anrmz/"><i class="fa fa-linkedin"></i></a></li>
-					<li><a href="https://github.com/anrmz"><i class="fa fa-github"></i></a></li>
-				</ul>
-			</div>
-			<div class="col-six tab-full">
-				<div class="copyright">
-					<span>© Copyright Anouar 2025.</span>
-				</div>
-			</div>
-			<div id="go-top">
-				<a class="smoothscroll" title="Back to Top" href="#top"><i class="fa fa-long-arrow-up"></i></a>
-			</div>
-		</div> <!-- /row -->
-	</footer>
-
-	<div id="preloader">
-		<div id="loader"></div>
-	</div>
-
-	<!-- Java Script -->
-	<script src="js/jquery-2.1.3.min.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/main.js"></script>
-	<script>
-		// Navbar toggle for mobile
-		$(document).ready(function () {
-			$('.hamburger').click(function () {
-				$(this).toggleClass('active');
-				$('.nav-links').toggleClass('active');
-			});
-
-			// Optional: Add scrolled class for navbar
-			$(window).scroll(function () {
-				if ($(this).scrollTop() > 100) {
-					$('.navbar').addClass('scrolled');
-				} else {
-					$('.navbar').removeClass('scrolled');
-				}
-			});
-
-			// Close mobile menu on link click
-			$('.nav-links a').click(function () {
-				$('.hamburger').removeClass('active');
-				$('.nav-links').removeClass('active');
-			});
-		});
-	</script>
+      // Portfolio modals functionality
+      const modalTriggers = document.querySelectorAll('.folio-item[data-modal]');
+      const modals = document.querySelectorAll('.modal');
+      modalTriggers.forEach(item => {
+        item.addEventListener('click', () => {
+          const id = item.getAttribute('data-modal');
+          const modal = document.getElementById(id);
+          if (modal) {
+            modal.classList.add('active');
+          }
+        });
+      });
+      // Close modals when clicking close buttons
+      document.querySelectorAll('.modal-close').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const modal = btn.closest('.modal');
+          if (modal) {
+            modal.classList.remove('active');
+          }
+        });
+      });
+      // Close modals when clicking outside content
+      modals.forEach(modal => {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.remove('active');
+          }
+        });
+      });
+    });
+  </script>
 </body>
-
 </html>
